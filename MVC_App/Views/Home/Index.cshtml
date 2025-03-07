@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var alertMessage = TempData["Message"] as string;
+}
+<br />
+<h2>Καλωσήρθατε!</h2>
+<br />
+<h3>
+    @if (ViewData["UserStatus"] != null)
+    {
+        <text>@ViewData["UserStatus"]</text>
+    }
+</h3>
+
+@if (!string.IsNullOrEmpty(alertMessage))
+{
+    <div class="alert alert-danger">
+        @alertMessage
+    </div>
+}
+
+

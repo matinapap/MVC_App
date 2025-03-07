@@ -1,0 +1,34 @@
+﻿@model IEnumerable<MVC_App.Models.Call>
+
+@{
+    ViewData["Title"] = "Ιστορικό";
+}
+
+<h1>Ιστορικό Κλήσεων</h1>
+
+@if (!Model.Any())
+{
+    <p>Δεν υπάρχουν κλήσεις για αυτόν τον πελάτη.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Description)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

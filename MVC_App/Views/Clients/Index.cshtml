@@ -1,0 +1,59 @@
+﻿@model MVC_App.Models.Client
+
+
+@{
+    ViewData["Title"] = "Στοιχεία Πελάτη";
+    var alertMessage = ViewData["AlertMessage"] as string;
+}
+
+<h1>Στοιχεία Πελάτη</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Afm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.User.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.User.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.User.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Afm)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+@if (!string.IsNullOrEmpty(alertMessage))
+{
+    <script>
+        alert("@alertMessage");
+    </script>
+}

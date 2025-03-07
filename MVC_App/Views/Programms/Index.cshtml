@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MVC_App.Models.Programm>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Αλλαγή Χαρακτηριστικών Προγράμματος</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProgrammName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Benfits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Charge)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProgrammName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Benfits)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Charge)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProgrammName">Edit</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

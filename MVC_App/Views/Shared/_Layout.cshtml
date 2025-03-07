@@ -1,0 +1,91 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    // Ελέγχουμε αν ο χρήστης είναι συνδεδεμένος
+    var userStatus = HttpContextAccessor.HttpContext.Session.GetString("UserType");
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MVC_App</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MVC_App.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">MyApp</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <!-- Πελάτες -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="clientsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Πελάτες
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="clientsDropdown">
+                                <li><a class="dropdown-item" href="@Url.Action("Index", "Clients")">Προβολή λογαριασμού</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index", "Calls")">Προβολή ιστορικού κλήσεων</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index", "Bills")">Εξόφληση λογαριασμού</a></li>
+                            </ul>
+                        </li>
+                        <!-- Διαχειριστές -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="administratorsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Διαχειριστές
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="administratorsDropdown">
+                                <li><a class="dropdown-item" href="@Url.Action("Create", "Sellers")">Δημιουργία νέου πωλητή</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Create", "Programms")">Δημιουργία νέων προγραμμάτων</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index", "Programms")">Αλλαγή χαρακτηριστικών προγράμματος</a></li>
+                            </ul>
+                        </li>
+                        <!-- Πωλητές -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="sellersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Πωλητές
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="sellersDropdown">
+                                <li><a class="dropdown-item" href="@Url.Action("Create", "Clients")">Καταχώρηση νέου πελάτη</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("ShowClientDept", "Bills")">Έκδοση λογαριασμού πελατών</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("EditClientsProgram", "Programms")">Αλλαγή προγράμματος πελάτη</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Αν ο χρήστης δεν είναι συνδεδεμένος, δείχνουμε το κουμπί Σύνδεση, αλλιώς Αποσύνδεση -->
+                @if (string.IsNullOrEmpty(userStatus))
+                {
+                    <a href="@Url.Action("LogIn", "Home")" class="btn btn-primary">Σύνδεση</a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Logout", "Home")" class="btn btn-danger text-white">Αποσύνδεση</a>
+                }
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - MVC_App - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

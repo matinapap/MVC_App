@@ -1,0 +1,15 @@
+﻿@model MVC_App.Models.Programm
+@{
+    ViewData["Title"] = "Dept";
+}
+
+<h2>Προβολή Λογαριασμού Πελάτη:</h2>
+
+<form asp-action="Dept" method="post">
+    <div class="form-group">
+        <label for="userId">Κωδικός Χρήστη</label>
+        <input type="text" class="form-control" id="userId" name="userId" />
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-primary">Αναζήτηση</button>
+</form>

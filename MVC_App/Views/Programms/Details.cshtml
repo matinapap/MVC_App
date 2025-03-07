@@ -1,0 +1,26 @@
+﻿@model MVC_App.Models.Programm
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Programm</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Benfits)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Benfits)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Charge)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Charge)
+        </dd>
+    </dl>
+</div>

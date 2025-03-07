@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Login Page";
+    var alertMessage = TempData["AlertMessage"] as string;
+}
+
+<h2>Σύνδεση</h2>
+
+<form asp-action="Login" method="post">
+    <div class="form-group">
+        <label for="username">Όνομα Χρήστη</label>
+        <input type="text" class="form-control" id="username" name="username" />
+    </div>
+    <div class="form-group">
+        <label for="userId">Κωδικός (UserId)</label>
+        <input type="password" class="form-control" id="userId" name="userId" />
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Σύνδεση</button>
+</form>
+<br />
+@if (!string.IsNullOrEmpty(alertMessage))
+{
+    <div class="alert alert-danger">
+        @alertMessage
+    </div>
+}

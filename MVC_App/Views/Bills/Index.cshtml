@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MVC_App.Models.Bill>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Εξόφληση Λογαριασμού</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Costs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumberNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Costs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumberNavigation.PhoneNumber)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
